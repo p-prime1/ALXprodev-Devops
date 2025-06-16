@@ -5,5 +5,5 @@ json=$(curl https://pokeapi.co/api/v2/pokemon/)
 if [ $? -eq 0 ]; then
     echo $json > data.json
 else
-    echo "Error code: $?" > error.txt
+    echo "Error code: $?" > errors.txt
 fi
