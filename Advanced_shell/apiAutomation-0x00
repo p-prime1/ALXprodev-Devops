@@ -1,6 +1,6 @@
 #!/bin/bash
 
-json=$(curl https://savanna.alxafrica.com/rltoken/jqW_W_52FxzA4GyiMpNQSw)
+json=$(curl https://pokeapi.co/api/v2/pokemon/)
 
 if [ $? -eq 0 ]; then
     echo $json > data.json
