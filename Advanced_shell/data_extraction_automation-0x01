@@ -1,0 +1,17 @@
+#!/bin/bash
+
+json=$(curl -s --max-time 10  https://pokeapi.co/api/v2/pokemon/)
+
+if [ $? -eq 0 ]; then
+    echo $json > data.json
+
+    name=$(jq -r '.name' data.json)
+    heigth=$(jq -r '.height'data.json)
+    weight=$(jq -r '.weight' data.json)
+    type=$(jq -r '.type' data.json)
+
+else
+    echo "Error code: $?" > errors.txt
+fi
+
+   echo "$name is of $type, weighs $weight, and is $height tall."
