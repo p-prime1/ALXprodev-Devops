@@ -5,5 +5,10 @@ pokemon=('bulbasaur' 'ivysaur' 'venusaur' 'charmander' 'charmeleon')
 
 for name in "${pokemon[@]}"
 do
-    echo $(jq -arg name "$name" '.[] | select(.name | ascii_downcase == ($name | ascii_downcase))') > "${name}.json"
+    echo "Fetching data for ${name}..."
+    entry=$(curl -s "https://pokeapi.co/api/v2/pokemon/$name")
+    sleep 5
+    echo "$entry" > "${name}.json"
+    echo "Saved data to ${name}.json"
+
 done
