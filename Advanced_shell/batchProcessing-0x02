@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-pokemon=('Bulbasaur' 'Ivysaur' 'Venusaur' 'Charmander' 'Charmeleon')
+pokemon=('bulbasaur' 'ivysaur' 'venusaur' 'charmander' 'charmeleon')
 
 for name in "${pokemon[@]}"
 do
