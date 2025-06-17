@@ -7,8 +7,23 @@ for name in "${pokemon[@]}"
 do
     echo "Fetching data for ${name}..."
     entry=$(curl -s "https://pokeapi.co/api/v2/pokemon/$name")
+    if [ $? -eq 0 ]; then
+        echo "$entry" > "${name}.json"
+        echo "Saved data to ${name}.json"
+    else
+        count=1
+        while count -le 3
+        do
+            entry=$(curl -s "https://pokeapi.co/api/v2/pokemon/$name")
+            if [ $? -eq 0 ]; then
+                echo "$entry" > "${name}.json"
+                echo "Saved data to ${name}.json"
+                break
+            fi
+            count=$((count + 1))
+        done
+        if [ $count -gt 3 ]; then
+            continue
+    fi
     sleep 5
-    echo "$entry" > "${name}.json"
-    echo "Saved data to ${name}.json"
-
 done
