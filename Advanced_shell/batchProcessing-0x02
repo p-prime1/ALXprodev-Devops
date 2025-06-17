@@ -1,0 +1,9 @@
+#!/bin/bash
+
+
+pokemon=('Bulbasaur' 'Ivysaur' 'Venusaur' 'Charmander' 'Charmeleon')
+
+for name in "${pokemon[@]}"
+do
+    echo $(jq -arg name "$name" '.[] | select(.name | ascii_downcase == ($name | ascii_downcase))') > "${name}.json"
+done
