@@ -1,0 +1,15 @@
+#!/bin/bash
+
+pokemon=('bulbasaur' 'ivysaur' 'venusaur' 'charmander' 'charmeleon')
+
+for name in "${pokemon[@]}"
+do
+    (
+        echo "Fetching $name..."
+        curl -s "https://pokeapi.co/api/v2/pokemon/$name" & > "${name}.json"
+        echo "Saved ${name}.json"
+    ) &
+done
+
+wait
+echo "Downloads complete!"
